@@ -1,3 +1,5 @@
+---
+
 ## Empowering Robots to See and Understand: A Vision-Language Model Powered by Jetson AGX and Isaac Sim
 
 ### Overview
@@ -31,7 +33,27 @@ Before setting up, make sure you have:
    jetson-containers run -v ~/ros2_workspace:/ros2_workspace $(kabilankb/nano_llm_ros2_kb)
    ```
 
-5. **Integrate with Isaac Sim**:
-   After the container is up and running, you can integrate the system with Isaac Sim for real-time robotics simulation. This step will involve setting up the necessary nodes in your ROS2 workspace, such as object detection or vision-language tasks, depending on your use case.
+5. **Launch the Vision-Language Model in ROS2**:
+   Now that the container is running, you can launch your Vision-Language Model (VLM) ROS2 node with the following command:
+   ```bash
+   ros2 launch ros2_vlm vlm_launch.py
+   ```
+   This will start the ROS2 launch file for your vision-language model, enabling interaction between the robot and its visual environment.
+
+6. **Integrate with Isaac Sim**:
+   After launching the ROS2 node, you can integrate the system with Isaac Sim for real-time robotics simulation. This step will involve setting up the necessary nodes in your ROS2 workspace, such as object detection or vision-language tasks, depending on your use case.
+
+
+You can add a call-to-action at the end of your blog post to encourage readers to seek more information. Here's how you can structure it:
 
 ---
+
+**For more information**, you can check out the full setup and details in the GitHub repository or reach out to me through my [Medium blog](https://medium.com/@kabilankb2003/empowering-robots-to-see-and-understand-a-vision-language-model-powered-by-jetson-agx-and-isaac-f797c076b94f) for any questions or clarifications.
+
+Feel free to follow me for more updates and tutorials on robotics, AI, and computer vision!
+
+---
+
+This will guide readers to the relevant resources and give them an easy way to contact or follow for future updates!
+
+Let me know if you need more adjustments or further details!
