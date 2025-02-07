@@ -53,7 +53,3 @@ You can add a call-to-action at the end of your blog post to encourage readers t
 Feel free to follow me for more updates and tutorials on robotics, AI, and computer vision!
 
 ---
-
-This will guide readers to the relevant resources and give them an easy way to contact or follow for future updates!
-
-Let me know if you need more adjustments or further details!
