@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLM Robot - Interaction for Warehouse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #chatbox {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #header {
+            background-color: #76c041; /* NVIDIA green */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        #messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            display: flex;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.ros {
+            justify-content: flex-start;
+        }
+
+        .bubble {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        .message.user .bubble {
+            background-color: #DCF8C6;
+        }
+
+        .message.ros .bubble {
+            background-color: #ECECEC;
+        }
+
+        #input {
+            display: flex;
+            padding: 10px;
+            background-color: #eee;
+        }
+
+        #query {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        #send, #mic {
+            padding: 10px 20px;
+            background-color: #76c041; /* NVIDIA green */
+            color: white;
+            border: none;
+            border-radius: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #send:hover, #mic:hover {
+            background-color: #66b636; /* Darker NVIDIA green */
+        }
+
+        #mic {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatbox">
+        <div id="header">
+            VLM Robot - Interaction for Warehouse
+        </div>
+        <div id="messages"></div>
+        <div id="input">
+            <input type="text" id="query" placeholder="Type or say your message here..." />
+            <button id="send" onclick="sendQuery()">Send</button>
+            <button id="mic" onclick="startRecognition()">🎤</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/roslibjs/1.1.0/roslib.min.js"></script>
+
+    <script>
+        // Connect to ROS via WebSocket
+        const ros = new ROSLIB.Ros({
+            url: 'ws://localhost:9090'  // WebSocket URL
+        });
+
+        ros.on('connection', function() {
+            console.log('Connected to websocket server.');
+        });
+
+        ros.on('error', function(error) {
+            console.log('Error connecting to websocket server:', error);
+        });
+
+        ros.on('close', function() {
+            console.log('Connection to websocket server closed.');
+        });
+
+        // Define ROS topic for input query (String type)
+        const inputQueryTopic = new ROSLIB.Topic({
+            ros: ros,
+            name: '/input_query',
+            messageType: 'std_msgs/String'
+        });
+
+        // Define ROS topic for output (String type)
+        const outputTopic = new ROSLIB.Topic({
+            ros: ros,
+            name: '/output',
+            messageType: 'std_msgs/String'
+        });
+
+        // Function to send query to ROS
+        function sendQuery() {
+            const queryInput = document.getElementById('query');
+            const query = queryInput.value.trim();
+
+            if (query) {
+                // Create and publish the query message
+                const queryMessage = new ROSLIB.Message({
+                    data: query
+                });
+
+                inputQueryTopic.publish(queryMessage);
+
+                // Display the user's query in the chat
+                displayMessage(query, 'user');
+
+                // Clear the input field
+                queryInput.value = '';
+            }
+        }
+
+        // Function to display messages in the chat
+        function displayMessage(message, sender) {
+            const chatbox = document.getElementById('messages');
+
+            // Create a new message element
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+
+            // Create a bubble for the message text
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            bubble.innerText = message;
+            messageElement.appendChild(bubble);
+
+            // Add the message to the chatbox
+            chatbox.appendChild(messageElement);
+
+            // Scroll to the bottom
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // Subscribe to output topic to receive responses
+        outputTopic.subscribe(function(message) {
+            let cleanedMessage = message.data.replace(/<\/s>/g, '').trim();
+            if (cleanedMessage) {
+                displayMessage(cleanedMessage, 'ros');
+                speak(cleanedMessage);  // Convert the output to speech
+            }
+        });
+
+        // Text-to-Speech (TTS) using Web Speech API
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';  // Set the language
+            speechSynthesis.speak(utterance);
+        }
+
+        // Speech Recognition setup using Web Speech API
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';  // Set language
+
+        recognition.onresult = function(event) {
+            const speechResult = event.results[0][0].transcript;
+            document.getElementById('query').value = speechResult;
+            sendQuery();  // Automatically send the query
+        };
+
+        function startRecognition() {
+            recognition.start();  // Start listening to user voice
+        }
+    </script>
+</body>
+</html>
+

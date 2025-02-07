@@ -1,0 +1,37 @@
+[0.815s] Invoking command in '/home/kabilankb/ros2_vlm/src/vlm_ros2': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/kabilankb/ros2_vlm/build/vlm_ros2/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kabilankb/ros2_vlm/install/vlm_ros2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vlm_ros2 build --build-base /home/kabilankb/ros2_vlm/build/vlm_ros2/build install --record /home/kabilankb/ros2_vlm/build/vlm_ros2/install.log --single-version-externally-managed install_data
+[1.129s] running egg_info
+[1.129s] creating ../../build/vlm_ros2/vlm_ros2.egg-info
+[1.129s] writing ../../build/vlm_ros2/vlm_ros2.egg-info/PKG-INFO
+[1.130s] writing dependency_links to ../../build/vlm_ros2/vlm_ros2.egg-info/dependency_links.txt
+[1.130s] writing entry points to ../../build/vlm_ros2/vlm_ros2.egg-info/entry_points.txt
+[1.130s] writing requirements to ../../build/vlm_ros2/vlm_ros2.egg-info/requires.txt
+[1.130s] writing top-level names to ../../build/vlm_ros2/vlm_ros2.egg-info/top_level.txt
+[1.130s] writing manifest file '../../build/vlm_ros2/vlm_ros2.egg-info/SOURCES.txt'
+[1.131s] reading manifest file '../../build/vlm_ros2/vlm_ros2.egg-info/SOURCES.txt'
+[1.132s] writing manifest file '../../build/vlm_ros2/vlm_ros2.egg-info/SOURCES.txt'
+[1.132s] running build
+[1.132s] running build_py
+[1.132s] creating /home/kabilankb/ros2_vlm/build/vlm_ros2/build
+[1.132s] creating /home/kabilankb/ros2_vlm/build/vlm_ros2/build/lib
+[1.132s] creating /home/kabilankb/ros2_vlm/build/vlm_ros2/build/lib/vlm_ros2
+[1.132s] copying vlm_ros2/__init__.py -> /home/kabilankb/ros2_vlm/build/vlm_ros2/build/lib/vlm_ros2
+[1.133s] copying vlm_ros2/ros2_vila.py -> /home/kabilankb/ros2_vlm/build/vlm_ros2/build/lib/vlm_ros2
+[1.133s] running install
+[1.133s] running install_lib
+[1.134s] creating /home/kabilankb/ros2_vlm/install/vlm_ros2/lib/python3.10/site-packages/vlm_ros2
+[1.134s] copying /home/kabilankb/ros2_vlm/build/vlm_ros2/build/lib/vlm_ros2/__init__.py -> /home/kabilankb/ros2_vlm/install/vlm_ros2/lib/python3.10/site-packages/vlm_ros2
+[1.134s] copying /home/kabilankb/ros2_vlm/build/vlm_ros2/build/lib/vlm_ros2/ros2_vila.py -> /home/kabilankb/ros2_vlm/install/vlm_ros2/lib/python3.10/site-packages/vlm_ros2
+[1.134s] byte-compiling /home/kabilankb/ros2_vlm/install/vlm_ros2/lib/python3.10/site-packages/vlm_ros2/__init__.py to __init__.cpython-310.pyc
+[1.135s] byte-compiling /home/kabilankb/ros2_vlm/install/vlm_ros2/lib/python3.10/site-packages/vlm_ros2/ros2_vila.py to ros2_vila.cpython-310.pyc
+[1.136s] running install_data
+[1.136s] creating /home/kabilankb/ros2_vlm/install/vlm_ros2/share/ament_index
+[1.136s] creating /home/kabilankb/ros2_vlm/install/vlm_ros2/share/ament_index/resource_index
+[1.136s] creating /home/kabilankb/ros2_vlm/install/vlm_ros2/share/ament_index/resource_index/packages
+[1.136s] copying resource/vlm_ros2 -> /home/kabilankb/ros2_vlm/install/vlm_ros2/share/ament_index/resource_index/packages
+[1.136s] copying package.xml -> /home/kabilankb/ros2_vlm/install/vlm_ros2/share/vlm_ros2
+[1.136s] running install_egg_info
+[1.138s] Copying ../../build/vlm_ros2/vlm_ros2.egg-info to /home/kabilankb/ros2_vlm/install/vlm_ros2/lib/python3.10/site-packages/vlm_ros2-0.0.0-py3.10.egg-info
+[1.139s] running install_scripts
+[1.161s] Installing ros2_vila script to /home/kabilankb/ros2_vlm/install/vlm_ros2/lib/vlm_ros2
+[1.161s] writing list of installed files to '/home/kabilankb/ros2_vlm/build/vlm_ros2/install.log'
+[1.184s] Invoked command in '/home/kabilankb/ros2_vlm/src/vlm_ros2' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/kabilankb/ros2_vlm/build/vlm_ros2/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kabilankb/ros2_vlm/install/vlm_ros2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vlm_ros2 build --build-base /home/kabilankb/ros2_vlm/build/vlm_ros2/build install --record /home/kabilankb/ros2_vlm/build/vlm_ros2/install.log --single-version-externally-managed install_data
