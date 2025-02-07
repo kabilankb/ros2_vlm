@@ -38,10 +38,14 @@ Before setting up, make sure you have:
    ```bash
    ros2 launch ros2_vlm vlm_launch.py
    ```
+
+
    This will start the ROS2 launch file for your vision-language model, enabling interaction between the robot and its visual environment.
 
 6. **Integrate with Isaac Sim**:
    After launching the ROS2 node, you can integrate the system with Isaac Sim for real-time robotics simulation. This step will involve setting up the necessary nodes in your ROS2 workspace, such as object detection or vision-language tasks, depending on your use case.
+![Image segmentation(7)](https://github.com/user-attachments/assets/177f5305-f645-4215-846e-c1a95cf3b1d2)
+![Image segmentation(4)](https://github.com/user-attachments/assets/3d08b869-3e4d-40e8-8795-8acd44aa2196)
 
 
 You can add a call-to-action at the end of your blog post to encourage readers to seek more information. Here's how you can structure it:
